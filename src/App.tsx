@@ -12,7 +12,9 @@ function App() {
     const [{ data: aircrafts, error: aircraftsError }] = useAxios(
         'http://localhost:3001/aircrafts',
     );
+
     const [fullItinerary, setFullItinerary] = useState<Itinerary[] | undefined>([]);
+    const [selectedItinerary, setSelectedItinerary] = useState<Itinerary | undefined>();
 
     useEffect(() => {
         if (aircrafts) {
@@ -26,7 +28,8 @@ function App() {
             <div className="content-wrapper">
                 <div className="itinerary-header">{ tomorrow }</div>
                 <div className="panels-wrapper">
-                    <AircraftSection itineraries={fullItinerary} aircraftsError={aircraftsError} />
+                    <AircraftSection itineraries={ fullItinerary } aircraftsError={ aircraftsError }
+                                     setItinerary={ (selectedItinerary: Itinerary) => setSelectedItinerary(selectedItinerary) }/>
                 </div>
             </div>
         </div>
