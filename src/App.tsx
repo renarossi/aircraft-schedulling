@@ -6,6 +6,7 @@ import './App.scss';
 import { Aircraft, Flight, Itinerary } from './models/models';
 import { AircraftSection } from './components/aircrafts-section';
 import { FlightsSection } from './components/flights-section';
+import { RotationSection } from './components/rotation-section';
 
 
 function App() {
@@ -17,18 +18,33 @@ function App() {
     const [fullItinerary, setFullItinerary] = useState<Itinerary[] | undefined>([]);
     const [selectedItinerary, setSelectedItinerary] = useState<Itinerary | undefined>();
 
+    const handleFullItinerary = () => {
+        const newFullItinerary = [...fullItinerary ?? []];
+        const findIndexOfItinerary = newFullItinerary.findIndex((itinerary: Itinerary) => itinerary.aircraft.ident === selectedItinerary?.aircraft.ident);
+        if (selectedItinerary instanceof Itinerary) {
+            newFullItinerary[findIndexOfItinerary] = selectedItinerary;
+        }
+        setFullItinerary(newFullItinerary);
+    }
+
     const insertFlightInItinerary = (flight: Flight) => {
-        console.log('insertFlightInItinerary', flight);
-        // setSelectedItinerary((prevState) => {
-        //     prevState?.flights.push(flight);
-        //     return prevState
-        // });
-        //
-        // setFullItinerary((prevState) => {
-        //     const porra = [...prevState ?? [], selectedItinerary];
-        //     console.log(porra);
-        //     return prevState;
-        // });
+        setSelectedItinerary((prevState) => {
+            const newState = prevState;
+            newState?.flights.push(flight);
+            return newState
+        });
+
+        handleFullItinerary();
+    }
+
+    const deleteFlightFromItinerary = () => {
+        setSelectedItinerary((prevState) => {
+            const newState = prevState;
+            newState?.flights.pop();
+            return newState;
+        });
+
+        handleFullItinerary();
     }
 
     useEffect(() => {
@@ -45,7 +61,10 @@ function App() {
                 <div className="panels-wrapper">
                     <AircraftSection itineraries={ fullItinerary } aircraftsError={ aircraftsError }
                                      setItinerary={ (selectedItinerary: Itinerary) => setSelectedItinerary(selectedItinerary) }/>
-                    <FlightsSection flights={selectedItinerary?.flights} handleSelectedFlight={(flight: Flight) => insertFlightInItinerary(flight)} />
+                    <RotationSection itinerary={ selectedItinerary }
+                                     handleFlightDelete={ () => deleteFlightFromItinerary() }/>
+                    <FlightsSection flights={ selectedItinerary?.flights }
+                                    handleSelectedFlight={ (flight: Flight) => insertFlightInItinerary(flight) }/>
                 </div>
             </div>
         </div>
