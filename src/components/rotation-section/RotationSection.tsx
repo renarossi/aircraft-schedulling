@@ -1,5 +1,6 @@
 import { FlightCard } from '../common';
 import { Itinerary } from '../../models/models';
+import Timeline from './Timeline/Timeline';
 
 interface RotationSectionProps {
     itinerary?: Itinerary;
@@ -10,8 +11,7 @@ const RotationSection = ({ itinerary, handleFlightDelete }: RotationSectionProps
     return (
         <div className="rotation-wrapper">
             <div className="panel-header">
-                {/*Rotation { itinerary && `${itinerary.aircraft.type} - ${itinerary.aircraft.economySeats}`}*/ }
-                Rotation
+                Rotation { itinerary && `${itinerary.aircraft.type} - ${itinerary.aircraft.economySeats}`}
             </div>
             <div className="content">
                 { !itinerary && (
@@ -22,7 +22,7 @@ const RotationSection = ({ itinerary, handleFlightDelete }: RotationSectionProps
                                                                                     showDeleteIcon={ (index === itinerary.flights.length - 1) }
                                                                                     flight={ flight }
                                                                                     deleteFlight={ () => handleFlightDelete() }/>) }
-                {/*<Timeline timeBlocks={timeBlocks} flights={itinerary?.flights} />*/ }
+                <Timeline itinerary={itinerary} />
             </div>
         </div>
     )
