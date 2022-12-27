@@ -25,6 +25,7 @@ export class Itinerary {
     }
 
     getAircraftUsage(): string {
+        console.log('getAircraftUsage Triggered');
         let overallUsage = 0;
         if (this.flights.length === 0) {
             return overallUsage.toString();

@@ -4,11 +4,12 @@ import useAxios from 'axios-hooks';
 
 import './App.scss';
 import { Aircraft, Itinerary } from './models/models';
+import AircraftSection from './components/aircrafts-section/AircraftSection';
 
 
 function App() {
     const tomorrow = moment().add(1, 'days').format('Do MMMM YYYY');
-    const [{ data: aircrafts, loading: loadingAircrafts, error: aircraftsError }] = useAxios(
+    const [{ data: aircrafts, error: aircraftsError }] = useAxios(
         'http://localhost:3001/aircrafts',
     );
     const [fullItinerary, setFullItinerary] = useState<Itinerary[] | undefined>([]);
@@ -24,7 +25,9 @@ function App() {
         <div className="App">
             <div className="content-wrapper">
                 <div className="itinerary-header">{ tomorrow }</div>
-                <div className="panels-wrapper"></div>
+                <div className="panels-wrapper">
+                    <AircraftSection itineraries={fullItinerary} aircraftsError={aircraftsError} />
+                </div>
             </div>
         </div>
     );
