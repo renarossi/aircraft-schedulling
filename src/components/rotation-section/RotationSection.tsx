@@ -1,10 +1,9 @@
 import { FlightCard } from '../common';
-import { Block, Itinerary } from '../../models/models';
+import { Itinerary } from '../../models/models';
 
 interface RotationSectionProps {
     itinerary?: Itinerary;
     handleFlightDelete: () => void;
-    // timeBlocks: Block[];
 }
 
 const RotationSection = ({ itinerary, handleFlightDelete }: RotationSectionProps) => {

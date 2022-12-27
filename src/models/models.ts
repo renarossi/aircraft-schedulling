@@ -24,17 +24,15 @@ export class Itinerary {
         this.flights = [];
     }
 
-    getAircraftUsage(): string {
-        console.log('getAircraftUsage Triggered');
+    getAircraftUsage(): number {
         let overallUsage = 0;
         if (this.flights.length === 0) {
-            return overallUsage.toString();
+            return overallUsage;
         } else {
             for (let i = 0; i < this.flights.length; i++) {
                 overallUsage = overallUsage + this.flights[i].arrivaltime - this.flights[i].departuretime;
             }
-            const percentage = (100 * overallUsage) / 84000; // Consider the 40 Minutes Ground rule over 00:00
-            return percentage.toFixed(2);
+            return (100 * overallUsage) / 84000; // Consider the 40 Minutes Ground rule over 00:00
         }
     }
 }

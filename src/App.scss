@@ -88,6 +88,10 @@
 
           .aircraft-usage {
             font-weight: $weight-light;
+
+            & .underused {
+              color: $color-dark-red;
+            }
           }
         }
       }

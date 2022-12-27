@@ -11,7 +11,7 @@ const AircraftCard = ({ selectItinerary, isSelected, itinerary }: AircraftCardPr
         <div className={ (isSelected ? 'aircraft-card selected' : 'aircraft-card') }
              onClick={ () => selectItinerary(itinerary) }>
             <div className="aircraft-name">{ itinerary.aircraft.type } - { itinerary.aircraft.economySeats }</div>
-            <div className="aircraft-usage">{ `${ itinerary.getAircraftUsage() }%` }</div>
+            <div className="aircraft-usage">Aircraft Usage: <b className={ (itinerary.getAircraftUsage() <= 20 ? 'underused' : '') }>{ `${ itinerary.getAircraftUsage().toFixed(0) }%` }</b></div>
         </div>
     )
 };
