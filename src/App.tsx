@@ -3,8 +3,9 @@ import moment from 'moment';
 import useAxios from 'axios-hooks';
 
 import './App.scss';
-import { Aircraft, Itinerary } from './models/models';
-import AircraftSection from './components/aircrafts-section/AircraftSection';
+import { Aircraft, Flight, Itinerary } from './models/models';
+import { AircraftSection } from './components/aircrafts-section';
+import { FlightsSection } from './components/flights-section';
 
 
 function App() {
@@ -15,6 +16,20 @@ function App() {
 
     const [fullItinerary, setFullItinerary] = useState<Itinerary[] | undefined>([]);
     const [selectedItinerary, setSelectedItinerary] = useState<Itinerary | undefined>();
+
+    const insertFlightInItinerary = (flight: Flight) => {
+        console.log('insertFlightInItinerary', flight);
+        // setSelectedItinerary((prevState) => {
+        //     prevState?.flights.push(flight);
+        //     return prevState
+        // });
+        //
+        // setFullItinerary((prevState) => {
+        //     const porra = [...prevState ?? [], selectedItinerary];
+        //     console.log(porra);
+        //     return prevState;
+        // });
+    }
 
     useEffect(() => {
         if (aircrafts) {
@@ -30,6 +45,7 @@ function App() {
                 <div className="panels-wrapper">
                     <AircraftSection itineraries={ fullItinerary } aircraftsError={ aircraftsError }
                                      setItinerary={ (selectedItinerary: Itinerary) => setSelectedItinerary(selectedItinerary) }/>
+                    <FlightsSection flights={selectedItinerary?.flights} handleSelectedFlight={(flight: Flight) => insertFlightInItinerary(flight)} />
                 </div>
             </div>
         </div>
