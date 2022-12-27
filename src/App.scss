@@ -1,0 +1,245 @@
+@import 'src/utilities/css/variables';
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Styles from here for now
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  position: absolute;
+  left: 50%;
+  margin-left: -600px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  .itinerary-header {
+    width: 100%;
+    text-align: center;
+    margin: $space-xl 0;
+    color: $color-dark-navy;
+    @include renderFont($font-m, $weight-heavy);
+  }
+
+  .panels-wrapper {
+    width: 100%;
+    height: calc(100% - 3 * #{$space-xl});
+    padding: 0 $space-xl;
+    display: flex;
+    flex-wrap: wrap;
+
+    .aircrafts-wrapper {
+      @extend %side-panels;
+
+      .content {
+        @extend %content;
+
+        .aircraft-card {
+          box-shadow: $box-shadow;
+          border-radius: $border-radius;
+          width: calc(100% - 2 * #{$space-xl});
+          text-align: center;
+          padding: $space-xl;
+          color: $color-dark-navy;
+          cursor: pointer;
+          margin-bottom: $space-m;
+
+          &.selected {
+            outline: 1px solid $color-dark-navy;
+          }
+
+          .aircraft-name {
+            font-weight: $weight-heavy;
+          }
+
+          .aircraft-usage {
+            font-weight: $weight-light;
+          }
+        }
+      }
+    }
+
+    .flights-wrapper {
+      @extend %side-panels;
+
+      .content {
+        @extend %content;
+
+        .flight-card {
+          @extend %flight-card;
+          margin-bottom: $space-m;
+          cursor: pointer;
+
+          .flight-number {
+            width: 100%;
+            margin-bottom: $space-xxl;
+            text-align: center;
+          }
+
+          .arrow {
+            display: none;
+          }
+
+          .arrival {
+            margin-left: auto;
+          }
+        }
+
+        .pagination {
+          color: $color-dark-navy;
+          text-align: center;
+          font-size: $font-m;
+
+          svg {
+            cursor: pointer;
+            margin: 0 $space-xs;
+
+            &.disabled {
+              cursor: auto;
+              opacity: 0.4;
+            }
+          }
+        }
+      }
+    }
+
+    .rotation-wrapper {
+      width: 100%;
+      max-width: 600px;
+      padding: $space-xl 0;
+
+      .content {
+        @extend %content;
+
+        .flight-card {
+          @extend %flight-card;
+          margin: 0 0 $space-xl;
+
+          .flight-number {
+            width: 100%;
+            margin-bottom: $space-xxl;
+
+            .delete {
+              margin-left: auto;
+              cursor: pointer;
+            }
+          }
+
+          .arrow {
+            @include arrow;
+          }
+        }
+      }
+
+      .timeline-wrapper {
+        width: 100%;
+        height: 3 * $space-xl;
+        margin-top: auto;
+
+        .timeline {
+          text-align: center;
+          position: relative;
+
+          .line {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+
+            &:before {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 0;
+              border-top: 1px solid $color-dark-navy;
+              background: $color-dark-navy;
+              width: 100%;
+              transform: translateY(-50%);
+            }
+
+            .dot {
+              width: 1px;
+              height: 10px;
+              background: $color-dark-navy;
+
+              &:first-child:before {
+                content: '00:00';
+              }
+
+              &:before {
+                content: '12:00';
+                font-size: 10px;
+                margin: $space-xxs;
+              }
+
+              &:last-child:before {
+                content: ''
+              }
+            }
+          }
+        }
+
+        .timeline-blocks {
+          height: calc(100% - #{$space-xl});
+          margin-top: 10px;
+          display: flex;
+
+          div {
+            height: 100%;
+
+            &.turnaround {
+              background: #ADA2FF;
+            }
+
+            &.scheduled {
+              background: #86C8BC;
+            }
+
+            &.idle {
+              background: #C0DEFF;
+            }
+          }
+        }
+      }
+    }
+
+    .panel-header {
+      @include renderFont($font-m, $weight-medium);
+      text-align: center;
+      color: $color-dark-navy;
+    }
+  }
+}

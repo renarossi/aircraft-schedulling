@@ -1,0 +1,139 @@
+// Space
+$space-xxs: 4px;
+$space-xs: 6px;
+$space-s: 8px;
+$space-m: 12px;
+$space-ml: 14px;
+$space-l: 16px;
+$space-xl: 20px;
+$space-xxl: 30px;
+
+// Font-size
+$font-xs: 0.8em;
+$font-s: 1em;
+$font-m: 1.2em;
+$font-l: 1.4em;
+$font-xl: 1.6em;
+$font-xxl: 2em;
+
+// Font-weight
+$weight-light: 200;
+$weight-medium: 400;
+$weight-heavy: 600;
+
+// Render Font
+@mixin renderFont($fontSize, $fontWeight) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+
+  @if ($fontSize == $font-s and $fontWeight == $weight-light) {
+    letter-spacing: 0.02em;
+  }
+
+  @if ($fontSize == $font-s and $fontWeight == $weight-medium) {
+    letter-spacing: 0.02em;
+  }
+
+  @if ($fontSize == $font-s and $fontWeight == $weight-heavy) {
+    letter-spacing: 0.01em;
+  }
+
+  @if ($fontSize == $font-m and $fontWeight == $weight-medium) {
+    letter-spacing: 0.005em;
+  }
+
+  @if ($fontSize == $font-m and $fontWeight == $weight-heavy) {
+    letter-spacing: 0.02em;
+  }
+}
+
+// Colors
+$color-dark-navy: #1C315E;
+$color-dark-green: #227C70;
+$color-light-green: #88A47C;
+$color-cream: #E6E2C3;
+
+// Extras
+$box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+$border-radius: 10px;
+
+// Elements
+@mixin arrow {
+  width: 120px;
+  margin: 0 auto;
+
+  .line {
+    margin-top: $space-ml;
+    width: 3 * $space-xxl;
+    background: $color-dark-navy;
+    height: $space-m;
+    float: left;
+  }
+
+  .point {
+    width: 0;
+    height: 0;
+    border-top: $space-xl solid transparent;
+    border-bottom: $space-xl solid transparent;
+    border-left: $space-xxl solid $color-dark-navy;
+    float: right;
+  }
+}
+
+%content {
+  width: 100%;
+  height: calc(100% - 2 * #{$space-xl});
+  margin-top: $space-xl;
+  display: flex;
+  flex-direction: column;
+
+  .instructions {
+    text-align: center;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: $color-dark-navy;
+  }
+}
+
+%side-panels {
+  width: 100%;
+  max-width: calc(300px - 2 * #{$space-xxl});
+  padding: $space-xl;
+}
+
+%flight-card {
+  width: calc(100% - 2 * #{$space-xl});
+  padding: $space-xl;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: $box-shadow;
+  color: $color-dark-navy;
+  border-radius: $border-radius;
+
+  .flight-number {
+    @include renderFont($font-s, $weight-light);
+    display: flex;
+
+    b {
+      @include renderFont($font-s, $weight-heavy);
+      padding-right: $space-xs;
+    }
+  }
+
+  .departure {
+    text-align: left;
+  }
+
+  .arrival {
+    text-align: right;
+  }
+
+  .airport {
+    @include renderFont($font-s, $weight-heavy);
+  }
+
+  .time {
+    @include renderFont($font-s, $weight-light);
+  }
+}
