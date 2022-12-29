@@ -87,10 +87,10 @@ const FlightsSection = ({ handleSelectedFlight, flights }: FlightsSectionProps) 
                     <p className="instructions">There are no Flights possible for this Aircraft.</p>) }
                 { paginatedFlights && paginatedFlights[currentPage] && (
                     <div className="pagination">
-                        <FontAwesomeIcon className={ (currentPage + 1 === 1 ? 'disabled' : '') } icon={ faCaretLeft }
+                        <FontAwesomeIcon data-testid="previous-page-btn" className={ (currentPage + 1 === 1 ? 'disabled' : '') } icon={ faCaretLeft }
                                          onClick={ () => handlePagination(PaginationDirection.left) }/>
-                        { currentPage + 1 }
-                        <FontAwesomeIcon className={ (currentPage + 1 === paginatedFlights.length ? 'disabled' : '') }
+                        <span data-testid="page-counter">{ currentPage + 1 }</span>
+                        <FontAwesomeIcon data-testid="next-page-btn" className={ (currentPage + 1 === paginatedFlights.length ? 'disabled' : '') }
                                          icon={ faCaretRight }
                                          onClick={ () => handlePagination(PaginationDirection.right) }/>
                     </div>

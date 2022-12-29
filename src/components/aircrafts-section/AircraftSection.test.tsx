@@ -14,7 +14,7 @@ describe('AircraftSection', () => {
         expect(loadingText).toBeInTheDocument();
     });
 
-    test('Render Aircrafts List', () => {
+    test('Load Aircrafts List', () => {
         const renderComponent = () => (render(<AircraftSection setItinerary={ () => {
         } } itineraries={ mockedItineraries }/>))
         const { getByTestId } = renderComponent();
