@@ -10,10 +10,10 @@ interface RotationSectionProps {
 const RotationSection = ({ itinerary, handleFlightDelete }: RotationSectionProps) => {
     return (
         <div className="rotation-wrapper">
-            <div className="panel-header">
+            <div className="panel-header" data-testid="rotation-header">
                 Rotation { itinerary && `${itinerary.aircraft.type} - ${itinerary.aircraft.economySeats}`}
             </div>
-            <div className="content">
+            <div className="content" data-testid="rotation-section">
                 { !itinerary && (
                     <p className="instructions">No Aircraft selected. Please select an Aircraft on the left.</p>) }
                 { itinerary && !itinerary.flights.length && (

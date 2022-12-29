@@ -9,7 +9,7 @@ export const MockedEmptyItinerary = {
     "getAircraftUsage": () => 0
 };
 
-export const MockedItineraryForTimeline = {
+export const MockedItinerary = {
     "aircraft": {
         "ident": "AS1001",
         "type": "A320",

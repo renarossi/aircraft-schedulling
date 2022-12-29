@@ -1,7 +1,7 @@
 import { render, within } from '@testing-library/react';
 
 import Timeline from './Timeline';
-import { MockedEmptyItinerary, MockedItineraryForTimeline } from '../_mocks/timeline-mocks';
+import { MockedEmptyItinerary, MockedItinerary } from '../_mocks/timeline-mocks';
 
 describe('Timeline', () => {
     test('Render no blocks', () => {
@@ -25,7 +25,7 @@ describe('Timeline', () => {
     });
 
     test('Render All Itinerary Blocks', () => {
-        const renderComponent = () => (render(<Timeline itinerary={ MockedItineraryForTimeline }/>));
+        const renderComponent = () => (render(<Timeline itinerary={ MockedItinerary }/>));
         const { getByTestId, queryAllByTestId } = renderComponent();
 
         const timelineBlocks = getByTestId('timeline-blocks');
