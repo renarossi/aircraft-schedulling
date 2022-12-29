@@ -6,7 +6,7 @@ interface TimelineProps {
 
 const Timeline = ({ itinerary }: TimelineProps) => {
     const renderBlocks = (timeBlocks: Block[]) => {
-        return timeBlocks.map((block: Block, index) => <div key={ index } style={ { width: `${ block.width }%` } }
+        return timeBlocks.map((block: Block, index) => <div key={ index } data-testid={`${block.type}`} style={ { width: `${ block.width }%` } }
                                                             className={ block.type }/>)
     }
 
@@ -65,6 +65,8 @@ const Timeline = ({ itinerary }: TimelineProps) => {
         }
         return renderBlocks(timeBlocks);
     }
+
+    console.log(itinerary);
     return (
         <div className="timeline-wrapper">
             <div className="timeline">
@@ -74,7 +76,7 @@ const Timeline = ({ itinerary }: TimelineProps) => {
                     <div className="dot"/>
                 </div>
             </div>
-            <div className="timeline-blocks">
+            <div className="timeline-blocks" data-testid="timeline-blocks">
                 { itinerary && (
                     <>
                         <div style={ { width: '1.38%' } } className="turnaround"/>
