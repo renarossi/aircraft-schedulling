@@ -1,12 +1,10 @@
-import { AxiosError } from 'axios';
-
 import { Itinerary } from '../../models/models';
 import AircraftCard from './aircraft-card/AircraftCard';
 import { useState } from 'react';
 
 interface AircraftSectionProps {
     itineraries?: Itinerary[];
-    aircraftsError?: AxiosError | null;
+    aircraftsError?: any;
     setItinerary: (selectedItinerary: Itinerary) => void;
 }
 
@@ -25,7 +23,7 @@ const AircraftSection = ({ itineraries, aircraftsError, setItinerary }: Aircraft
                 { aircraftsError && (
                     <p className="instructions">There was an error loading the Aircrafts... Please Try again
                         later</p>) }
-                { !itineraries && (<p className="instructions">Loading Aircrafts...</p>) }
+                { !itineraries && !aircraftsError && (<p className="instructions">Loading Aircrafts...</p>) }
                 { itineraries && itineraries.map((itinerary: Itinerary) => <AircraftCard
                     key={ itinerary.aircraft.ident } itinerary={ itinerary }
                     selectItinerary={ (selectedItinerary) => handleItinerarySelection(selectedItinerary) }
