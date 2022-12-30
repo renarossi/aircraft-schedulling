@@ -66,7 +66,6 @@ const Timeline = ({ itinerary }: TimelineProps) => {
         return renderBlocks(timeBlocks);
     }
 
-    console.log(itinerary);
     return (
         <div className="timeline-wrapper">
             <div className="timeline">
