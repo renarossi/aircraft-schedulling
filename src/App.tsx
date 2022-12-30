@@ -12,7 +12,7 @@ import { RotationSection } from './components/rotation-section';
 function App() {
     const tomorrow = moment().add(1, 'days').format('Do MMMM YYYY');
     const [{ data: aircrafts, error: aircraftsError }] = useAxios(
-        'http://localhost:3001/aircrafts',
+        'https://ec304ac5-ce38-44c1-bcf9-2a5b1a5b09a1.mock.pstmn.io/aircrafts',
     );
 
     const [fullItinerary, setFullItinerary] = useState<Itinerary[] | undefined>([]);

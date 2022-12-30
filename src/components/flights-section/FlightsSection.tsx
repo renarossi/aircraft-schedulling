@@ -18,7 +18,7 @@ interface FlightsSectionProps {
 
 const FlightsSection = ({ handleSelectedFlight, flights }: FlightsSectionProps) => {
     const [{ data: rawListOfFlights, loading: loadingRawListOfFlights, error: rawListOfFlightsError }] = useAxios(
-        'http://localhost:3001/flights'
+        'https://ec304ac5-ce38-44c1-bcf9-2a5b1a5b09a1.mock.pstmn.io/flights'
     );
     const [paginatedFlights, setPaginatedFlights] = useState<Flight[][] | undefined>(undefined);
     const [currentPage, setCurrentPage] = useState(0);
@@ -70,7 +70,7 @@ const FlightsSection = ({ handleSelectedFlight, flights }: FlightsSectionProps) 
         } else if (flights && flights?.length === 0 && rawListOfFlights) {
             paginate(rawListOfFlights);
         }
-    }, [handleSelectedFlight]);
+    }, [handleSelectedFlight, flights, rawListOfFlights]);
 
     return (
         <div className="flights-wrapper">
